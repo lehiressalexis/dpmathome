@@ -1,0 +1,98 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.app-header {
+  background: linear-gradient(180deg, #0A0E1A 0%, #0A1428 100%);
+  border-bottom: 2px solid var(--gold);
+  padding: 24px 0 20px;
+  text-align: center;
+}
+.header-inner { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.header-logo { font-size: 28px; }
+.header-title {
+  font-family: 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.header-subtitle { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.06em; }
+
+/* Main */
+.app-main {
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Loading */
+.loading-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: var(--text);
+  padding: 60px 0;
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--blue-border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.progress-bar-wrap {
+  width: 300px;
+  background: var(--blue-border);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  height: 6px;
+  margin-top: 8px;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+.progress-label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 6px;
+  display: block;
+  text-align: center;
+}
+
+/* Error */
+.error-block {
+  background: rgba(200, 65, 42, 0.12);
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  padding: 14px 18px;
+  color: #FF9080;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.error-icon { font-size: 1.1rem; font-weight: bold; }
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  border-top: 1px solid var(--blue-border);
+}

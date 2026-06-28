@@ -1,0 +1,29 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:       #C89B3C;
+  --gold-light: #F0E6C8;
+  --blue-dark:  #0A1428;
+  --blue-mid:   #091428;
+  --blue-panel: #0F2032;
+  --blue-border:#1E3A5F;
+  --text:       #C8AA6E;
+  --text-dim:   #785A28;
+  --white:      #F0E6D3;
+  --green:      #0BC4B3;
+  --red:        #C8412A;
+}
+
+html, body {
+  height: 100%;
+  background: var(--blue-dark);
+  color: var(--white);
+  font-family: 'Spiegel', 'Segoe UI', sans-serif;
+  font-size: 15px;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--blue-mid); }
+::-webkit-scrollbar-thumb { background: var(--blue-border); border-radius: 3px; }

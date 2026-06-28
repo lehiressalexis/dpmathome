@@ -1,0 +1,139 @@
+.result { display: flex; flex-direction: column; gap: 24px; }
+
+.result-hero {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--blue-panel);
+  border: 1px solid var(--blue-border);
+  border-radius: 6px;
+  padding: 20px 24px;
+}
+.champ-splash {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+}
+.champ-info { display: flex; flex-direction: column; gap: 8px; }
+.champ-name {
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+.champ-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  padding: 3px 10px;
+  border: 1px solid var(--blue-border);
+  border-radius: 2px;
+  font-size: 0.72rem;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.tag-gold { border-color: var(--gold); color: var(--gold); }
+.winrate-row { display: flex; align-items: baseline; gap: 10px; margin-top: 4px; }
+.winrate-label { font-size: 0.8rem; color: var(--text-dim); }
+.winrate-value { font-size: 1.4rem; font-weight: 700; }
+
+.result-grid { display: flex; flex-direction: column; gap: 16px; }
+
+.section {
+  background: var(--blue-panel);
+  border: 1px solid var(--blue-border);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.section-title {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--blue-border);
+}
+
+.items-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.item-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+.item-rank {
+  position: absolute;
+  top: -6px; left: -6px;
+  width: 18px; height: 18px;
+  background: var(--gold);
+  color: var(--blue-dark);
+  font-size: 0.68rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.item-img {
+  width: 56px; height: 56px;
+  border: 1px solid var(--blue-border);
+  border-radius: 4px;
+  object-fit: cover;
+  transition: border-color 0.15s;
+}
+.item-img:hover { border-color: var(--gold); }
+.item-stats { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.item-wr { font-size: 0.72rem; font-weight: 600; }
+.item-pr { font-size: 0.65rem; color: var(--text-dim); }
+
+.side-panels { display: flex; gap: 16px; flex-wrap: wrap; }
+.side-panels .section { flex: 1; min-width: 180px; }
+
+.spells-row { display: flex; gap: 14px; }
+.spell-card { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.spell-img { width: 48px; height: 48px; border-radius: 4px; border: 1px solid var(--blue-border); }
+.spell-name { font-size: 0.72rem; color: var(--text); }
+.sub-stat { font-size: 0.72rem; color: var(--text-dim); margin-top: 10px; }
+
+.runes-row { display: flex; flex-direction: column; gap: 10px; }
+.rune-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+}
+.rune-label { font-size: 0.68rem; color: var(--text-dim); width: 68px; flex-shrink: 0; }
+.rune-name { flex: 1; font-size: 0.88rem; color: var(--white); }
+.rune-rate { font-size: 0.72rem; color: var(--gold); }
+
+.kda-row { display: flex; gap: 24px; flex-wrap: wrap; }
+.kda-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.kda-value { font-weight: 700; }
+.kda-label { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.players-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.players-table th {
+  text-align: left; padding: 6px 10px;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-dim); border-bottom: 1px solid var(--blue-border);
+}
+.players-table td { padding: 10px 10px; border-bottom: 1px solid rgba(30,58,95,0.5); }
+.players-table tr:last-child td { border-bottom: none; }
+.player-name { color: var(--gold); font-weight: 600; }
+.lp-badge {
+  background: rgba(200,155,60,0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 2px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+}
+.player-rank { color: var(--text-dim); font-size: 0.8rem; }
+.mastery-badge {
+  background: rgba(11, 196, 179, 0.1);
+  border: 1px solid var(--green);
+  color: var(--green);
+  border-radius: 2px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+}
