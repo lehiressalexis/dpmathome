@@ -38,7 +38,7 @@ QUEUE_TYPE_PARAM = {
     "ranked_flex": "RANKED_FLEX_SR",
 }
 
-CACHE_FILE = "mastery_cache.json"
+CACHE_FILE = os.path.join(os.path.dirname(__file__), "mastery_cache.json")
 CACHE_TTL_HOURS = 24
 
 class RiotClient:
@@ -113,6 +113,13 @@ class RiotClient:
             "description": item.get("plaintext", ""),
             "gold": item.get("gold", {}).get("total", 0),
         }
+    
+    @lru_cache(maxsize=1)
+    def get_runes_data(self) -> list:
+        url = f"https://ddragon.leagueoflegends.com/cdn/{self.patch}/data/fr_FR/runesReforged.json"
+        r = requests.get(url, timeout=10)
+        r.raise_for_status()
+        return r.json()
 
     # ------------------------------------------------------------------
     # Ladder (Challenger → GrandMaster → Master)

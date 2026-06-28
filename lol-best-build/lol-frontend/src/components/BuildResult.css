@@ -105,7 +105,80 @@
 .rune-label { font-size: 0.68rem; color: var(--text-dim); width: 68px; flex-shrink: 0; }
 .rune-name { flex: 1; font-size: 0.88rem; color: var(--white); }
 .rune-rate { font-size: 0.72rem; color: var(--gold); }
+.runes-trees {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
 
+.rune-tree {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rune-tree-primary { border-right: 1px solid var(--blue-border); padding-right: 24px; }
+
+.rune-tree-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.rune-tree-icon { width: 36px; height: 36px; }
+.rune-tree-name {
+  font-size: 0.9rem;
+  color: var(--gold);
+  font-weight: 600;
+  flex: 1;
+}
+.rune-tree-badge {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rune-slot {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.rune-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+  transition: transform 0.1s;
+}
+.rune-item:hover { transform: scale(1.1); }
+
+.rune-icon { border-radius: 50%; }
+
+.rune-keystone .rune-icon { width: 52px; height: 52px; }
+.rune-item:not(.rune-keystone) .rune-icon { width: 36px; height: 36px; }
+
+.rune-selected .rune-icon {
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 10px rgba(200, 155, 60, 0.5);
+  opacity: 1;
+}
+.rune-unselected .rune-icon {
+  opacity: 0.25;
+  filter: grayscale(100%);
+}
+
+.rune-pickrate {
+  font-size: 0.62rem;
+  color: var(--gold);
+}
 .kda-row { display: flex; gap: 24px; flex-wrap: wrap; }
 .kda-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .kda-value { font-weight: 700; }

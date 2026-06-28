@@ -134,7 +134,7 @@ class BuildAggregator:
     def _best_runes(self, matches: list[dict]) -> dict:
         primary_counter: Counter = Counter()
         secondary_counter: Counter = Counter()
-        keystone_counter: Counter = Counter()
+        perk_counter: Counter = Counter()
 
         for match in matches:
             ps = match.get("primaryRuneStyle")
@@ -143,18 +143,16 @@ class BuildAggregator:
                 primary_counter[ps] += 1
             if ss:
                 secondary_counter[ss] += 1
-            perks = match.get("selectedPerks", [])
-            if perks:
-                keystone_counter[perks[0]] += 1  # premier perk = keystone
+            for perk in match.get("selectedPerks", []):
+                if perk:
+                    perk_counter[perk] += 1
 
         total = len(matches)
+        best_primary = primary_counter.most_common(1)
+        best_secondary = secondary_counter.most_common(1)
 
-        def _top(counter: Counter, n: int = 1):
-            return counter.most_common(n)
-
-        best_primary = _top(primary_counter)
-        best_secondary = _top(secondary_counter)
-        best_keystone = _top(keystone_counter)
+        # Récupérer les 9 perks les plus joués (4 primaires + 2 secondaires + 3 stats)
+        top_perks = {perk_id for perk_id, _ in perk_counter.most_common(9)}
 
         return {
             "primaryStyle": {
@@ -167,7 +165,11 @@ class BuildAggregator:
                 "name": RUNE_STYLE_NAMES.get(best_secondary[0][0], "Inconnu") if best_secondary else None,
                 "pickRate": round(best_secondary[0][1] / total * 100, 1) if best_secondary else 0,
             },
-            "keystoneId": best_keystone[0][0] if best_keystone else None,
+            "selectedPerks": list(top_perks),
+            "perkPickRates": {
+                perk_id: round(count / total * 100, 1)
+                for perk_id, count in perk_counter.most_common(20)
+            }
         }
 
     # ------------------------------------------------------------------

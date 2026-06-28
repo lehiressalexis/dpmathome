@@ -82,11 +82,21 @@ export default function BuildResult({ data }) {
           )}
 
           {/* Runes */}
-          {runes?.primaryStyle?.name && (
-            <Section title="Runes">
-              <div className="runes-row">
-                <RuneCard label="Principal" name={runes.primaryStyle.name} rate={runes.primaryStyle.pickRate} />
-                <RuneCard label="Secondaire" name={runes.secondaryStyle.name} rate={runes.secondaryStyle.pickRate} />
+          {runes?.primaryStyle?.id && data.runesData && (
+            <Section title="Arbre de runes">
+              <div className="runes-trees">
+                <RuneTree
+                  tree={data.runesData.find(t => t.id === runes.primaryStyle.id)}
+                  selectedPerks={runes.selectedPerks}
+                  perkPickRates={runes.perkPickRates}
+                  isPrimary={true}
+                />
+                <RuneTree
+                  tree={data.runesData.find(t => t.id === runes.secondaryStyle.id)}
+                  selectedPerks={runes.selectedPerks}
+                  perkPickRates={runes.perkPickRates}
+                  isPrimary={false}
+                />
               </div>
             </Section>
           )}
@@ -176,6 +186,55 @@ function KdaStat({ label, value, color, large }) {
     <div className="kda-stat">
       <span className="kda-value" style={{ color, fontSize: large ? '1.8rem' : '1.4rem' }}>{value}</span>
       <span className="kda-label">{label}</span>
+    </div>
+  )
+}
+
+function RuneTree({ tree, selectedPerks, perkPickRates, isPrimary }) {
+  if (!tree) return null
+  const DDR_RUNES = 'https://ddragon.leagueoflegends.com/cdn/img'
+
+  return (
+    <div className={`rune-tree ${isPrimary ? 'rune-tree-primary' : 'rune-tree-secondary'}`}>
+      {/* Header du chemin */}
+      <div className="rune-tree-header">
+        <img
+          className="rune-tree-icon"
+          src={`${DDR_RUNES}/${tree.icon}`}
+          alt={tree.name}
+        />
+        <span className="rune-tree-name">{tree.name}</span>
+        {isPrimary && (
+          <span className="rune-tree-badge">Principal</span>
+        )}
+      </div>
+
+      {/* Lignes de runes */}
+      {tree.slots.map((slot, slotIndex) => (
+        <div key={slotIndex} className="rune-slot">
+          {slot.runes.map(rune => {
+            const isSelected = selectedPerks?.includes(rune.id)
+            const pickRate = perkPickRates?.[rune.id]
+            return (
+              <div
+                key={rune.id}
+                className={`rune-item ${isSelected ? 'rune-selected' : 'rune-unselected'} ${slotIndex === 0 && isPrimary ? 'rune-keystone' : ''}`}
+                title={`${rune.name}${pickRate ? ` — ${pickRate}% pick` : ''}`}
+              >
+                <img
+                  src={`${DDR_RUNES}/${rune.icon}`}
+                  alt={rune.name}
+                  className="rune-icon"
+                  onError={e => e.target.style.opacity = '0.2'}
+                />
+                {isSelected && pickRate && (
+                  <span className="rune-pickrate">{pickRate}%</span>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      ))}
     </div>
   )
 }

@@ -119,6 +119,7 @@ def get_best_build(champion_name):
         yield f"data: {json.dumps({'type': 'progress', 'step': 'aggregation', 'message': 'Calcul du build optimal...'})}\n\n"
 
         best_build = aggregator.compute_best_build(all_matches, champion_key)
+        runes_data = riot.get_runes_data()
 
         # Résultat final
         result = {
@@ -128,6 +129,7 @@ def get_best_build(champion_name):
                 "id": champion_id,
                 "imageUrl": f"https://ddragon.leagueoflegends.com/cdn/{riot.patch}/img/champion/{champion_id}.png",
             },
+            "runesData": runes_data,
             "region": region,
             "queue": queue,
             "topPlayers": players_info,
